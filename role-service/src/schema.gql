@@ -1,0 +1,32 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""The supported role types."""
+enum ENUM_ROLE_TYPE {
+  ADMIN
+  SUPER_ADMIN
+  USER
+}
+
+type Module {
+  description: String!
+  level: Float!
+  name: String!
+  parent: String
+}
+
+type Query {
+  findAllRoles: [Role!]!
+}
+
+type Role {
+  name: String!
+  roleModules: [RoleModule!]
+  type: ENUM_ROLE_TYPE!
+}
+
+type RoleModule {
+  module: Module!
+  permission: Int!
+}

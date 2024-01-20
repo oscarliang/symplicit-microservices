@@ -1,0 +1,21 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""The supported role types."""
+enum ENUM_ROLE_TYPE {
+  ADMIN
+  SUPER_ADMIN
+  USER
+}
+
+type Query {
+  findAll: [User!]!
+}
+
+type User {
+  _id: ID!
+  password: String!
+  roles: [ENUM_ROLE_TYPE!]!
+  username: String!
+}
