@@ -13,7 +13,7 @@ async function bootstrap() {
   } as TcpOptions);
   await app.listen().then(() => {
     console.log(
-      `USER_SERVICE_API ENDPOINT: http://localhost:${API_GATEWAY_PORT}`,
+      `USER_SERVICE_TCP ENDPOINT: http://localhost:${API_GATEWAY_PORT}`,
     );
     console.log(`Swagger ENDPOINT: http://localhost:${API_GATEWAY_PORT}/api`);
   });
