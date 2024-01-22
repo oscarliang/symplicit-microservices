@@ -1,0 +1,78 @@
+networks:
+  oscarmysql:
+    external: true
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - '3002:3002'
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app:delegated
+    networks:
+      default:
+        aliases:
+          - oscar.db.dockers
+      oscarmysql:
+        aliases:
+          - oscar.db.dockers
+          - api-gateway-server
+    restart: unless-stopped
+  car-service:
+    build:
+      context: ./car-service
+    ports:
+      - '3003:3003'
+      - '3008:3008'
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app:delegated
+    networks:
+      default:
+        aliases:
+          - oscar.db.dockers
+      oscarmysql:
+        aliases:
+          - oscar.db.dockers
+          - car-service-server
+    restart: unless-stopped
+  role-service:
+    build:
+      context: ./role-service
+    ports:
+      - '3005:3005'
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app:delegated
+    networks:
+      default:
+        aliases:
+          - oscar.db.dockers
+      oscarmysql:
+        aliases:
+          - oscar.db.dockers
+          - role-service-server
+    restart: unless-stopped
+  user-service:
+    build:
+      context: ./user-service
+    ports:
+      - '3004:3004'
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app:delegated
+    networks:
+      default:
+        aliases:
+          - oscar.db.dockers
+      oscarmysql:
+        aliases:
+          - oscar.db.dockers
+          - user-service-server
+    restart: unless-stopped
